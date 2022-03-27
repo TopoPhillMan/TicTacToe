@@ -11,7 +11,8 @@ class board:
     def __getitem__(self, i):
         return f"Value {i}"
 
-# There are propably better ways of making dimensional "arrays", but I dont know how to do that
+# There are propably better ways of making dimensional "arrays", but when I tried making one using actual arrays
+# Things started breaking, and when I used an array and a class things broke more, sooooooo yeah
 
 mainBoard = board()
 
@@ -30,11 +31,8 @@ def changeSqare(x,y,changeTo):
 def printBoard():
     print(f"{mainBoard.x0.y0} | {mainBoard.x1.y0} | {mainBoard.x2.y0}")
     print("──┼───┼──")
-    print(f"{mainBoard.x0.y1} | {mainBoard.x1.y1} | {mainBoard.x2.y1}")
+    print(f"{mainBoard.x0.y1} |x {mainBoard.x1.y1} | {mainBoard.x2.y1}")
     print("──┼───┼──")
     print(f"{mainBoard.x0.y2} | {mainBoard.x1.y2} | {mainBoard.x2.y2}")
-
-
-printBoard()
 
 
