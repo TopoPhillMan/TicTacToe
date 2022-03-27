@@ -1,8 +1,4 @@
-# x
-# x1  x2  x3
-# 0   0   0  
-# 0   0   0
-# 0   0   0
+
 
 class boardY:
     value = "-"
