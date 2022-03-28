@@ -1,38 +1,28 @@
-class row:
-    y0 = "-"
-    y1 = "-"
-    y2 = "-"
+
+class rowX:
+    y = []
 
 class board:
-    x0 = row()
-    x1 = row()
-    x2 = row()
+    x = [rowX,rowX,rowX]
     
     def __getitem__(self, i):
         return f"Value {i}"
 
-# There are propably better ways of making dimensional "arrays", but when I tried making one using actual arrays
-# Things started breaking, and when I used an array and a class things broke more, sooooooo yeah
-
 mainBoard = board()
 
-def changeSqare(x,y,changeTo):
-    if x == "a":
-        x = "0"
-    elif x == "b":
-        x = "1"
-    elif x == "c":
-        x = "2"
-    else: 
-        print("ERROR: Unknown x value")
-        
-    mainBoard.x[x[y]] = changeTo
+def makeBoard():
+    for a in range(3):
+        mainBoard.x.append(rowX)
+        for b in range(3):
+            mainBoard.x[a].y.append("-")
+
 
 def printBoard():
-    print(f"{mainBoard.x0.y0} | {mainBoard.x1.y0} | {mainBoard.x2.y0}")
+    print(f"{mainBoard.x[0].y[0]} | {mainBoard.x[1].y[0]} | {mainBoard.x[2].y[0]}")
     print("──┼───┼──")
-    print(f"{mainBoard.x0.y1} |x {mainBoard.x1.y1} | {mainBoard.x2.y1}")
+    print(f"{mainBoard.x[0].y[1]} | {mainBoard.x[1].y[1]} | {mainBoard.x[2].y[1]}")
     print("──┼───┼──")
-    print(f"{mainBoard.x0.y2} | {mainBoard.x1.y2} | {mainBoard.x2.y2}")
+    print(f"{mainBoard.x[0].y[2]} | {mainBoard.x[1].y[2]} | {mainBoard.x[2].y[2]}")
 
-
+def changeSquare(x,y,changeTo):
+    mainBoard.x[x].y[y] = changeTo
