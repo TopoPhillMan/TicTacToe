@@ -12,26 +12,29 @@ def printScreen(turn,turnNumber):
         print ("ERROR: Invalid Player Turn")
 
     print(f"Turn {turnNumber} - {player} Move")
-    sC.printBoard
+    sC.printBoard()
 
 
 def checkWin(checkFor):
     if sC.mainBoard.x[0].y[0] == checkFor and  sC.mainBoard.x[0].y[1] == checkFor and  sC.mainBoard.x[0].y[2] == checkFor:
         return True
-    if sC.mainBoard.x[1].y[0] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[1].y[2] == checkFor:
+    elif sC.mainBoard.x[1].y[0] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[1].y[2] == checkFor:
         return True
-    if sC.mainBoard.x[2].y[0] == checkFor and  sC.mainBoard.x[2].y[1] == checkFor and  sC.mainBoard.x[2].y[2] == checkFor:
+    elif sC.mainBoard.x[2].y[0] == checkFor and  sC.mainBoard.x[2].y[1] == checkFor and  sC.mainBoard.x[2].y[2] == checkFor:
         return True 
-    if sC.mainBoard.x[0].y[0] == checkFor and  sC.mainBoard.x[1].y[0] == checkFor and  sC.mainBoard.x[2].y[0] == checkFor:
+    elif sC.mainBoard.x[0].y[0] == checkFor and  sC.mainBoard.x[1].y[0] == checkFor and  sC.mainBoard.x[2].y[0] == checkFor:
         return True
-    if sC.mainBoard.x[0].y[1] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[2].y[1] == checkFor:
+    elif sC.mainBoard.x[0].y[1] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[2].y[1] == checkFor:
         return True 
-    if sC.mainBoard.x[0].y[2] == checkFor and  sC.mainBoard.x[1].y[2] == checkFor and  sC.mainBoard.x[2].y[2] == checkFor:
+    elif sC.mainBoard.x[0].y[2] == checkFor and  sC.mainBoard.x[1].y[2] == checkFor and  sC.mainBoard.x[2].y[2] == checkFor:
         return True 
-    if sC.mainBoard.x[0].y[0] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[2].y[2] == checkFor:
+    elif sC.mainBoard.x[0].y[0] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[2].y[2] == checkFor:
         return True 
-    if sC.mainBoard.x[0].y[2] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[2].y[0] == checkFor:
+    elif sC.mainBoard.x[0].y[2] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[2].y[0] == checkFor:
         return True
+    else:
+        return False
+    
     
 def clearScreen():
     counter = 0

@@ -1,4 +1,4 @@
-
+import squareControll as sC
 class rowX:
     y = []
 

@@ -2,6 +2,7 @@ import gameControll as gC
 import squareControll as sC
 
 def mainLoop():
+    sC.makeBoard()
     winCondition = True
     currentTurn = 0
     playerIcon = "X"
@@ -11,14 +12,14 @@ def mainLoop():
         mainInputX = int(input("X Position> "))
         mainInputY = int(input("Y Position> "))
         gC.checkInvalidInput(mainInputX,mainInputY)
-        #if sC.checkSquareFilled(mainInputX,mainInputY):
-        #    continue
+        if sC.checkSquareFilled(mainInputX,mainInputY):
+            continue
         if currentTurn == 0:
             playerIcon = "X"
         elif currentTurn == 1:
             playerIcon = "O"
         sC.mainBoard.x[mainInputX].y[mainInputY] = playerIcon
-        if gC.checkWin(playerIcon):
+        if gC.checkWin(playerIcon) == True:
             print(f"{playerIcon} WINS!")
             break
         if currentTurn == 0:
