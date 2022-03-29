@@ -29,4 +29,7 @@ def changeSquare(x,y,changeTo):
 
 def checkSquareFilled(x,y):
     if mainBoard.x[x].y[y] != "-":
-        
+        print("ERROR: Square Already Occupied")
+        return True
+    else:
+        return False

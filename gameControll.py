@@ -1,3 +1,4 @@
+from cgi import test
 from timeit import repeat
 import squareControll as sC
 
@@ -13,58 +14,35 @@ def printScreen(turn,turnNumber):
     print(f"Turn {turnNumber} - {player} Move")
     sC.printBoard
 
-def processInputX(input):
-    xRaw = input[0:1]
-
-    x = ""
-
-    if xRaw == "a":
-        x = 1
-    elif xRaw == "b":
-        x = 2
-    elif xRaw == "c":
-        x = 3
-    else:
-        print("ERROR: Invalid Input")
-
-    return x
-
-def processInputY(input):
-    yRaw = input[1:2]
-
-    y = ""
-
-    if yRaw == "1":
-        y = 1
-    elif yRaw == "2":
-        y = 2
-    elif yRaw == "3":
-        y = 3
-    else:
-        print("ERROR: Invalid Input")
-
-    return y
 
 def checkWin(checkFor):
     if sC.mainBoard.x[0].y[0] == checkFor and  sC.mainBoard.x[0].y[1] == checkFor and  sC.mainBoard.x[0].y[2] == checkFor:
-        return 1
+        return True
     if sC.mainBoard.x[1].y[0] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[1].y[2] == checkFor:
-        return 1
+        return True
     if sC.mainBoard.x[2].y[0] == checkFor and  sC.mainBoard.x[2].y[1] == checkFor and  sC.mainBoard.x[2].y[2] == checkFor:
-        return 1
+        return True 
     if sC.mainBoard.x[0].y[0] == checkFor and  sC.mainBoard.x[1].y[0] == checkFor and  sC.mainBoard.x[2].y[0] == checkFor:
-        return 1
+        return True
     if sC.mainBoard.x[0].y[1] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[2].y[1] == checkFor:
-        return 1
+        return True 
     if sC.mainBoard.x[0].y[2] == checkFor and  sC.mainBoard.x[1].y[2] == checkFor and  sC.mainBoard.x[2].y[2] == checkFor:
-        return 1
+        return True 
     if sC.mainBoard.x[0].y[0] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[2].y[2] == checkFor:
-        return 1
+        return True 
     if sC.mainBoard.x[0].y[2] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[2].y[0] == checkFor:
-        return 1
+        return True
     
 def clearScreen():
     counter = 0
     while counter < 100: 
         print("")
         counter += 1
+
+def checkInvalidInput(inputX, inputY):
+    if inputX != 1 or inputX != 2 or inputX != 3:
+        return True
+    if inputY != 1 or inputY != 2 or inputY != 3:
+        return True
+        
+
