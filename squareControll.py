@@ -26,3 +26,7 @@ def printBoard():
 
 def changeSquare(x,y,changeTo):
     mainBoard.x[x].y[y] = changeTo
+
+def checkSquareFilled(x,y):
+    if mainBoard.x[x].y[y] != "-":
+        
