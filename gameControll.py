@@ -1,3 +1,4 @@
+from timeit import repeat
 import squareControll as sC
 
 def printScreen(turn,turnNumber):
@@ -62,4 +63,8 @@ def checkWin(checkFor):
     if sC.mainBoard.x[0].y[2] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[2].y[0] == checkFor:
         return 1
     
-
+def clearScreen():
+    counter = 0
+    while counter < 100: 
+        print("")
+        counter += 1
