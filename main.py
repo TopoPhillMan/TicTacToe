@@ -19,9 +19,10 @@ def mainLoop():
         elif currentTurn == 1:
             playerIcon = "O"
         sC.mainBoard.x[mainInputX].y[mainInputY] = playerIcon
-        if gC.checkWin(playerIcon) == True:
-            print(f"{playerIcon} WINS!")
-            break
+        #checkWinCondition = gC.checkWin(currentTurn)
+        #if checkWinCondition:
+        #    print(f"{playerIcon} WINS!")
+        #    break
         if currentTurn == 0:
             currentTurn = 1
         elif currentTurn == 1:

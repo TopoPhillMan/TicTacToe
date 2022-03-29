@@ -16,24 +16,45 @@ def printScreen(turn,turnNumber):
 
 
 def checkWin(checkFor):
-    if sC.mainBoard.x[0].y[0] == checkFor and  sC.mainBoard.x[0].y[1] == checkFor and  sC.mainBoard.x[0].y[2] == checkFor:
-        return True
-    elif sC.mainBoard.x[1].y[0] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[1].y[2] == checkFor:
-        return True
-    elif sC.mainBoard.x[2].y[0] == checkFor and  sC.mainBoard.x[2].y[1] == checkFor and  sC.mainBoard.x[2].y[2] == checkFor:
-        return True 
-    elif sC.mainBoard.x[0].y[0] == checkFor and  sC.mainBoard.x[1].y[0] == checkFor and  sC.mainBoard.x[2].y[0] == checkFor:
-        return True
-    elif sC.mainBoard.x[0].y[1] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[2].y[1] == checkFor:
-        return True 
-    elif sC.mainBoard.x[0].y[2] == checkFor and  sC.mainBoard.x[1].y[2] == checkFor and  sC.mainBoard.x[2].y[2] == checkFor:
-        return True 
-    elif sC.mainBoard.x[0].y[0] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[2].y[2] == checkFor:
-        return True 
-    elif sC.mainBoard.x[0].y[2] == checkFor and  sC.mainBoard.x[1].y[1] == checkFor and  sC.mainBoard.x[2].y[0] == checkFor:
-        return True
-    else:
-        return False
+    if checkFor == 0:
+        if sC.mainBoard.x[0].y[0] == "X" and  sC.mainBoard.x[0].y[1] == "X" and  sC.mainBoard.x[0].y[2] == "X":
+            return True
+        elif sC.mainBoard.x[1].y[0] == "X" and  sC.mainBoard.x[1].y[1] == "X" and  sC.mainBoard.x[1].y[2] == "X":
+            return True
+        elif sC.mainBoard.x[2].y[0] == "X" and  sC.mainBoard.x[2].y[1] == "X" and  sC.mainBoard.x[2].y[2] == "X":
+            return True 
+        elif sC.mainBoard.x[0].y[0] == "X" and  sC.mainBoard.x[1].y[0] == "X" and  sC.mainBoard.x[2].y[0] == "X":
+            return True
+        elif sC.mainBoard.x[0].y[1] == "X" and  sC.mainBoard.x[1].y[1] == "X" and  sC.mainBoard.x[2].y[1] == "X":
+            return True 
+        elif sC.mainBoard.x[0].y[2] == "X" and  sC.mainBoard.x[1].y[2] == "X" and  sC.mainBoard.x[2].y[2] == "X":
+            return True 
+        elif sC.mainBoard.x[0].y[0] == "X" and  sC.mainBoard.x[1].y[1] == "X" and  sC.mainBoard.x[2].y[2] == "X":
+            return True 
+        elif sC.mainBoard.x[0].y[2] == "X" and  sC.mainBoard.x[1].y[1] == "X" and  sC.mainBoard.x[2].y[0] == "X":
+            return True
+        else:
+            return False
+    
+    if checkFor == 1: 
+        if sC.mainBoard.x[0].y[0] == "O" and  sC.mainBoard.x[0].y[1] == "O" and  sC.mainBoard.x[0].y[2] == "O":
+            return True
+        elif sC.mainBoard.x[1].y[0] == "O" and  sC.mainBoard.x[1].y[1] == "O" and  sC.mainBoard.x[1].y[2] == "O":
+            return True
+        elif sC.mainBoard.x[2].y[0] == "O" and  sC.mainBoard.x[2].y[1] == "O" and  sC.mainBoard.x[2].y[2] == "O":
+            return True 
+        elif sC.mainBoard.x[0].y[0] == "O" and  sC.mainBoard.x[1].y[0] == "O" and  sC.mainBoard.x[2].y[0] == "O":
+            return True
+        elif sC.mainBoard.x[0].y[1] == "O" and  sC.mainBoard.x[1].y[1] == "O" and  sC.mainBoard.x[2].y[1] == "O":
+            return True 
+        elif sC.mainBoard.x[0].y[2] == "O" and  sC.mainBoard.x[1].y[2] == "O" and  sC.mainBoard.x[2].y[2] == "O":
+            return True 
+        elif sC.mainBoard.x[0].y[0] == "O" and  sC.mainBoard.x[1].y[1] == "O" and  sC.mainBoard.x[2].y[2] == "O":
+            return True 
+        elif sC.mainBoard.x[0].y[2] == "O" and  sC.mainBoard.x[1].y[1] == "O" and  sC.mainBoard.x[2].y[0] == "O":
+            return True
+        else:
+            return False
     
     
 def clearScreen():
