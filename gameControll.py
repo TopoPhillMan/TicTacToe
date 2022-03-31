@@ -13,6 +13,7 @@ def printScreen(turn,turnNumber):
 
     print(f"Turn {turnNumber} - {player} Move")
     sC.printBoard()
+    print("")
 
 
 def checkWin(turn):
@@ -62,3 +63,4 @@ def displayWin(playerIcon):
     print("-------")
     print(f"{playerIcon} WINS!")
     print("-------")
+    print("")
