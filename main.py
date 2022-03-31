@@ -1,5 +1,6 @@
 import gameControll as gC
 import squareControll as sC
+import testing as test
 
 def mainLoop():
     winCondition = True
@@ -7,6 +8,7 @@ def mainLoop():
     playerIcon = "X"
     turnNumber = 1
     while winCondition:
+
         gC.printScreen(currentTurn,turnNumber)
         mainInputXRaw = int(input("X Position> "))
         mainInputYRaw = int(input("Y Position> "))
@@ -15,16 +17,17 @@ def mainLoop():
         gC.checkInvalidInput(mainInputX,mainInputY)
         if sC.checkSquareFilled(mainInputX,mainInputY):
             continue
-        print(playerIcon)
         sC.mainBoard.x[mainInputX][mainInputY] = playerIcon
-        checkWinCondition = gC.checkWin(currentTurn)
-        if checkWinCondition:
-            print(f"{playerIcon} WINS!")
+        if gC.checkWin(currentTurn):
+            gC.clearScreen()
+            gC.displayWin(playerIcon)
             break
         if currentTurn == 0:
             currentTurn = 1
+            playerIcon = "O"
         elif currentTurn == 1:
             currentTurn = 0
+            playerIcon = "X"
         turnNumber += 1
         gC.clearScreen()
 

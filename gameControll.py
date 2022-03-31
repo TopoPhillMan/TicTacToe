@@ -24,25 +24,24 @@ def checkWin(turn):
     else:
         print ("ERROR: Invalid Player Turn")
 
-    if checkFor == 0:
-        if sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[1][0] == checkFor and sC.mainBoard.x[2][0] == checkFor:
-            return True
-        elif sC.mainBoard.x[0][1] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[2][1] == checkFor:
-            return True
-        elif sC.mainBoard.x[0][2] == checkFor and sC.mainBoard.x[1][2] == checkFor and sC.mainBoard.x[2][2] == checkFor:
-            return True
-        elif sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[0][1] == checkFor and sC.mainBoard.x[0][2] == checkFor:
-            return True
-        elif sC.mainBoard.x[1][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[1][2] == checkFor:
-            return True
-        elif sC.mainBoard.x[2][0] == checkFor and sC.mainBoard.x[2][1] == checkFor and sC.mainBoard.x[2][2] == checkFor:
-            return True
-        elif sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[2][2] == checkFor:
-            return True
-        elif sC.mainBoard.x[2][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[0][2] == checkFor:
-            return True
-        else:
-            return False 
+    if sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[1][0] == checkFor and sC.mainBoard.x[2][0] == checkFor:
+        return True
+    elif sC.mainBoard.x[0][1] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[2][1] == checkFor:
+        return True
+    elif sC.mainBoard.x[0][2] == checkFor and sC.mainBoard.x[1][2] == checkFor and sC.mainBoard.x[2][2] == checkFor:
+        return True
+    elif sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[0][1] == checkFor and sC.mainBoard.x[0][2] == checkFor:
+        return True
+    elif sC.mainBoard.x[1][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[1][2] == checkFor:
+        return True
+    elif sC.mainBoard.x[2][0] == checkFor and sC.mainBoard.x[2][1] == checkFor and sC.mainBoard.x[2][2] == checkFor:
+        return True
+    elif sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[2][2] == checkFor:
+        return True
+    elif sC.mainBoard.x[2][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[0][2] == checkFor:
+        return True
+    else:
+        return False 
         
         
     
@@ -59,4 +58,7 @@ def checkInvalidInput(inputX, inputY):
     if inputY != 1 or inputY != 2 or inputY != 3:
         return True
         
-
+def displayWin(playerIcon):
+    print("-------")
+    print(f"{playerIcon} WINS!")
+    print("-------")
