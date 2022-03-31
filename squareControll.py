@@ -1,34 +1,29 @@
 import squareControll as sC
-class rowX:
-    y = []
 
 class board:
-    x = [rowX,rowX,rowX]
+    x = [["-","-","-"],["-","-","-"],["-","-","-"]]
     
+    # This is a bad way of doing it but I will add a better method using appending latter
+
     def __getitem__(self, i):
         return f"Value {i}"
 
 mainBoard = board()
 
-def makeBoard():
-    for a in range(3):
-        mainBoard.x.append(rowX)
-        for b in range(3):
-            mainBoard.x[a].y.append("-")
-
-
 def printBoard():
-    print(f"{mainBoard.x[0].y[0]} | {mainBoard.x[1].y[0]} | {mainBoard.x[2].y[0]}")
+    
+    print(f"{mainBoard.x[0][2]} | {mainBoard.x[1][2]} | {mainBoard.x[2][2]}")
     print("──┼───┼──")
-    print(f"{mainBoard.x[0].y[1]} | {mainBoard.x[1].y[1]} | {mainBoard.x[2].y[1]}")
+    print(f"{mainBoard.x[0][1]} | {mainBoard.x[1][1]} | {mainBoard.x[2][1]}")
     print("──┼───┼──")
-    print(f"{mainBoard.x[0].y[2]} | {mainBoard.x[1].y[2]} | {mainBoard.x[2].y[2]}")
+    print(f"{mainBoard.x[0][0]} | {mainBoard.x[1][0]} | {mainBoard.x[2][0]}")
+
 
 def changeSquare(x,y,changeTo):
-    mainBoard.x[x].y[y] = changeTo
+    mainBoard.x[x][y] = changeTo
 
 def checkSquareFilled(x,y):
-    if mainBoard.x[x].y[y] != "-":
+    if mainBoard.x[x][y] != "-":
         print("ERROR: Square Already Occupied")
         return True
     else:
