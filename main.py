@@ -8,15 +8,14 @@ def mainLoop():
     turnNumber = 1
     while winCondition:
         gC.printScreen(currentTurn,turnNumber)
-        mainInputX = int(input("X Position> "))
-        mainInputY = int(input("Y Position> "))
+        mainInputXRaw = int(input("X Position> "))
+        mainInputYRaw = int(input("Y Position> "))
+        mainInputX = mainInputXRaw - 1
+        mainInputY = mainInputYRaw - 1
         gC.checkInvalidInput(mainInputX,mainInputY)
         if sC.checkSquareFilled(mainInputX,mainInputY):
             continue
-        if currentTurn == 0:
-            playerIcon = "X"
-        elif currentTurn == 1:
-            playerIcon = "O"
+        print(playerIcon)
         sC.mainBoard.x[mainInputX][mainInputY] = playerIcon
         checkWinCondition = gC.checkWin(currentTurn)
         if checkWinCondition:
@@ -27,5 +26,6 @@ def mainLoop():
         elif currentTurn == 1:
             currentTurn = 0
         turnNumber += 1
+        gC.clearScreen()
 
 mainLoop()

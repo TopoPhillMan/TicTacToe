@@ -11,12 +11,14 @@ class board:
 mainBoard = board()
 
 def printBoard():
-    
-    print(f"{mainBoard.x[0][2]} | {mainBoard.x[1][2]} | {mainBoard.x[2][2]}")
-    print("──┼───┼──")
-    print(f"{mainBoard.x[0][1]} | {mainBoard.x[1][1]} | {mainBoard.x[2][1]}")
-    print("──┼───┼──")
-    print(f"{mainBoard.x[0][0]} | {mainBoard.x[1][0]} | {mainBoard.x[2][0]}")
+
+    print(f"3 | {mainBoard.x[0][2]} | {mainBoard.x[1][2]} | {mainBoard.x[2][2]}")
+    print("  | ──┼───┼──")
+    print(f"2 | {mainBoard.x[0][1]} | {mainBoard.x[1][1]} | {mainBoard.x[2][1]}")
+    print("  | ──┼───┼──")
+    print(f"1 | {mainBoard.x[0][0]} | {mainBoard.x[1][0]} | {mainBoard.x[2][0]}")
+    print("  └───────────")
+    print("x  1   2   3")
 
 
 def changeSquare(x,y,changeTo):

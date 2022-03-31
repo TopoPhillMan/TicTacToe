@@ -15,7 +15,15 @@ def printScreen(turn,turnNumber):
     sC.printBoard()
 
 
-def checkWin(checkFor):
+def checkWin(turn):
+
+    if turn == 0:
+        checkFor = "X"
+    elif turn == 1:
+        checkFor = "O"
+    else:
+        print ("ERROR: Invalid Player Turn")
+
     if checkFor == 0:
         if sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[1][0] == checkFor and sC.mainBoard.x[2][0] == checkFor:
             return True
