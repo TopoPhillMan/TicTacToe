@@ -1,7 +1,7 @@
+from timeit import repeat
 import gameControll as gC
 import squareControll as sC
 
-def checkWin():
-    sC.mainBoard.x[1][0] = "X"
-    sC.mainBoard.x[1][1] = "X"
-    sC.mainBoard.x[1][2] = "X"
+def checkWin(testCondition,player): 
+    for x in range(3):
+        sC.mainBoard.x[testCondition][x] = player

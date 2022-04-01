@@ -31,4 +31,5 @@ def mainLoop():
         turnNumber += 1
         gC.clearScreen()
 
-mainLoop()
+test.checkWin(1,"X")
+sC.printBoard()
