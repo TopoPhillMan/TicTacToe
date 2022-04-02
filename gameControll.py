@@ -15,7 +15,6 @@ def printScreen(turn,turnNumber):
     sC.printBoard()
     print("")
 
-
 def checkWin(turn):
 
     if turn == 0:
@@ -44,9 +43,6 @@ def checkWin(turn):
     else:
         return False 
         
-        
-    
-    
 def clearScreen():
     counter = 0
     while counter < 100: 
@@ -64,3 +60,33 @@ def displayWin(playerIcon):
     print(f"{playerIcon} WINS!")
     print("-------")
     print("")
+
+
+def mainLoop():
+    winCondition = True
+    currentTurn = 0
+    playerIcon = "X"
+    turnNumber = 1
+    while winCondition:
+
+        printScreen(currentTurn,turnNumber)
+        mainInputXRaw = int(input("X Position> "))
+        mainInputYRaw = int(input("Y Position> "))
+        mainInputX = mainInputXRaw - 1
+        mainInputY = mainInputYRaw - 1
+        checkInvalidInput(mainInputX,mainInputY)
+        if sC.checkSquareFilled(mainInputX,mainInputY):
+            continue
+        sC.mainBoard.x[mainInputX][mainInputY] = playerIcon
+        if checkWin(currentTurn):
+            clearScreen()
+            displayWin(playerIcon)
+            break
+        if currentTurn == 0:
+            currentTurn = 1
+            playerIcon = "O"
+        elif currentTurn == 1:
+            currentTurn = 0
+            playerIcon = "X"
+        turnNumber += 1
+        clearScreen()
