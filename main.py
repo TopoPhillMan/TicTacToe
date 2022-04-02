@@ -30,6 +30,3 @@ def mainLoop():
             playerIcon = "X"
         turnNumber += 1
         gC.clearScreen()
-
-test.checkWin(1,"X")
-sC.printBoard()
