@@ -1,6 +1,7 @@
-from cgi import test
-from timeit import repeat
 import squareControll as sC
+import testing as test
+
+gameContinues = True
 
 def printScreen(turn,turnNumber):
     player = ""
@@ -11,7 +12,7 @@ def printScreen(turn,turnNumber):
     else:
         print ("ERROR: Invalid Player Turn")
 
-    print(f"Turn {turnNumber} - {player} Move")
+    print(f" Turn {turnNumber} - {player} Move")
     sC.printBoard()
     print("")
 
@@ -61,6 +62,21 @@ def displayWin(playerIcon):
     print("-------")
     print("")
 
+def checkGameConplete():
+    check = 0
+    for x in range(3):
+        for y in range(3):
+            if sC.mainBoard.x[x][y] != "-":
+                check += 1
+    if check == 9:
+        return True
+    else:
+        return False
+
+def resetGame():
+    for x in range(3):
+        for y in range(3):
+            sC.mainBoard.x[x][y] = "-"
 
 def mainLoop():
     winCondition = True
@@ -68,7 +84,11 @@ def mainLoop():
     playerIcon = "X"
     turnNumber = 1
     while winCondition:
-
+        test.fillBoard()
+        if checkGameConplete():
+            resetGame()
+            gameContinues = False
+            return None
         printScreen(currentTurn,turnNumber)
         mainInputXRaw = int(input("X Position> "))
         mainInputYRaw = int(input("Y Position> "))
@@ -90,3 +110,6 @@ def mainLoop():
             playerIcon = "X"
         turnNumber += 1
         clearScreen()
+
+
+
