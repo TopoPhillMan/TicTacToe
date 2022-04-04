@@ -17,9 +17,11 @@ print("""
  If no winner is chosen at the end of the game, then a restart
  will occor and players will try and wonder what went wrong. 
 
- HAVE FUN
+ HAVE FUN!
+ 
 """)
 
 
 while gC.gameContinues:
   gC.mainLoop()
+  print("Game Restarting due to Full Board")

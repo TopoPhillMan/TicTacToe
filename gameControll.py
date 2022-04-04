@@ -84,7 +84,6 @@ def mainLoop():
     playerIcon = "X"
     turnNumber = 1
     while winCondition:
-        test.fillBoard()
         if checkGameConplete():
             resetGame()
             gameContinues = False
