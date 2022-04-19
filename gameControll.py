@@ -16,15 +16,15 @@ def printScreen(turn,turnNumber):
     sC.printBoard()
     print("")
 
-def checkInput(n):
-    if n == 1:
-        return False
-    elif n == 2:
-        return False
-    elif n == 3:
-        return False
-    else:
-        return True
+# def checkInput(n):
+#     if n == 1:
+#         return False
+#     elif n == 2:
+#         return False
+#     elif n == 3:
+#         return False
+#     else:
+#         return True
 
 def checkWin(turn):
 
@@ -65,6 +65,7 @@ def displayWin(playerIcon):
     print(f"{playerIcon} WINS!")
     print("-------")
     print("")
+    gameContinues = False
 
 def checkGameConplete():
     check = 0
@@ -97,9 +98,9 @@ def mainLoop():
         mainInputYRaw = int(input("Y Position> "))
         mainInputX = mainInputXRaw - 1
         mainInputY = mainInputYRaw - 1
-        if checkInput(mainInputX) or checkInput(mainInputY):
-            print("ERORR: Invalid Input")
-            continue
+        # if checkInput(mainInputX) == True  or checkInput(mainInputY):
+        #     print("ERORR: Invalid Input")
+        #     continue
         if sC.checkSquareFilled(mainInputX,mainInputY):
             continue
         sC.mainBoard.x[mainInputX][mainInputY] = playerIcon
