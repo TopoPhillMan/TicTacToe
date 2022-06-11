@@ -1,4 +1,4 @@
-import squareControll as sC
+import squareControl as sC
 import testing as test
 
 gameContinues = True

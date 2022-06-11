@@ -1,5 +1,5 @@
-import gameControll as gC
-import squareControll as sC
+import gameControl as gC
+import squareControl as sC
 
 def checkWin(testCondition,deffiner,player): 
     if testCondition == 0:
@@ -27,3 +27,5 @@ def fillBoard():
     sC.mainBoard.x[1][2] = "O"
     sC.mainBoard.x[2][1] = "O"
     sC.mainBoard.x[1][1] = "O"
+
+

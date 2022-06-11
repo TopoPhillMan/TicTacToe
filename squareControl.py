@@ -1,9 +1,20 @@
-import squareControll as sC
+import squareControl as sC
 
 class board:
-    x = [["-","-","-"],["-","-","-"],["-","-","-"]]
     
-    # This is a bad way of doing it but I will add a better method using appending latter
+    def __init__(self):
+        pass
+    
+    x = []
+    
+    def genBoard(xLine, yLine):
+        lineInternal = []
+        boardTemp = []
+        for y in range(yLine):
+            lineInternal.append("")
+        for x in range(xLine):
+            boardTemp.append(lineInternal)
+        return boardTemp
 
     def __getitem__(self, i):
         return f"Value {i}"
