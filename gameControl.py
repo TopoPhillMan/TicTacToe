@@ -83,11 +83,15 @@ def resetGame():
         for y in range(3):
             sC.mainBoard.x[x][y] = "-"
 
-def mainLoop():
+def mainLoop(xRows, yRows, winLength):
     winCondition = True
     currentTurn = 0
     playerIcon = "X"
     turnNumber = 1
+    sC.mainBoard.x = sC.board.genBoard(xRows, yRows)
+
+
+
     while winCondition:
         if checkGameConplete():
             resetGame()

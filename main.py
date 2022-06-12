@@ -1,5 +1,6 @@
 import gameControl as gC
 import squareControl as sC
+import testing as test
 
 # print("""
 #  WELCOME TO TICTACKTOE
@@ -26,5 +27,7 @@ import squareControl as sC
 #   gC.mainLoop()
 #   print("Game Restarting due to Full Board")
 
-sC.mainBoard.x = sC.mainBoard.genBoard(3, 3)
-print(sC.mainBoard.x)
+sC.mainBoard.x = sC.board.genBoard(3, 3)
+test.fillBoard()
+sC.printBoard(3,3)
+
