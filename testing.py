@@ -18,10 +18,14 @@ def checkWin(testCondition,deffiner,player):
             sC.mainBoard.x[1][1] == player
             sC.mainBoard.x[0][2] == player
 
-def fillBoard():
-    for x in range(3):
-        for y in range(3):
-            sC.mainBoard.x[x][y] = "X"
+def fillBoard(xRows, yRows):
+    for y in range(yRows):
+        for x in range(xRows):
+            sC.mainBoard.x[y].x[x] = "X"
+
+def checkOrientation():
+    sC.mainBoard.x[1][1] = "◁"
+    sC.mainBoard.x[2][1] = "◁"
 
 
 

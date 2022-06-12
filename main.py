@@ -1,3 +1,4 @@
+from numpy import square
 import gameControl as gC
 import squareControl as sC
 import testing as test
@@ -27,7 +28,6 @@ import testing as test
 #   gC.mainLoop()
 #   print("Game Restarting due to Full Board")
 
-sC.mainBoard.x = sC.board.genBoard(3, 3)
-test.fillBoard()
+sC.mainBoard.x = sC.board.genBoard(3,3)
+sC.mainBoard.x[1][1] = "O"
 sC.printBoard(3,3)
-
