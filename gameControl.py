@@ -1,19 +1,13 @@
 import squareControl as sC
+import gameControl as gC
 import testing as test
 
 gameContinues = True
 
 def printScreen(turn,turnNumber):
-    player = ""
-    if turn == 0:
-        player = "X"
-    elif turn == 1:
-        player = "O"
-    else:
-        print ("ERROR: Invalid Player Turn")
 
-    print(f" Turn {turnNumber} - {player} Move")
-    sC.printBoard()
+    print(f" Turn {turnNumber} - {turn} Move")
+    sC.printBoard(sC.mainBoard.xRows, sC.mainBoard.yRows)
     print("")
 
 # def checkInput(n):
@@ -54,17 +48,14 @@ def checkWin(turn, length, xRows, yRows):
             checkTallyD = 0
             checkTallyU = 0
             for z in range(length):
-                if sC.mainBoard.x[x+z][x-z]:
+                if sC.mainBoard.x[x+z][x-z] == turn:
                     checkTallyD += 1
-                if sC.mainBoard.x[x+z][x+z]:
+                if sC.mainBoard.x[x+z][x+z] == turn:
                     checkTallyU += 1
             if checkTallyD == length or checkTallyU == length:
                 return True
 
     return False
-                
-
-
 
     # if turn == 0:
     #     checkFor = "X"
@@ -103,37 +94,39 @@ def displayWin(playerIcon):
     print(f"{playerIcon} WINS!")
     print("-------")
     print("")
-    gameContinues = False
+    gC.gameContinues = False
 
-def checkGameConplete():
+def checkBoardFilled():
+    xRows = sC.mainBoard.xRows
+    yRows = sC.mainBoard.yRows
     check = 0
-    for x in range(3):
-        for y in range(3):
-            if sC.mainBoard.x[x][y] != "-":
+    for x in range(xRows):
+        for y in range(yRows):
+            if sC.mainBoard.x[x][y] != "⠀":
                 check += 1
-    if check == 9:
+    if check == xRows * yRows:
         return True
     else:
         return False
 
 def resetGame():
-    for x in range(3):
-        for y in range(3):
-            sC.mainBoard.x[x][y] = "-"
+    xRows = sC.mainBoard.xRows
+    yRows = sC.mainBoard.yRows
+    for x in range(xRows):
+        for y in range(yRows):
+            sC.mainBoard.x[x][y] = "⠀"
 
 def mainLoop(xRows, yRows, winLength):
     winCondition = True
-    currentTurn = 0
-    playerIcon = "X"
+    currentTurn = "X"
     turnNumber = 1
     sC.mainBoard.x = sC.board.genBoard(xRows, yRows)
-
-
+    sC.mainBoard.xRows = xRows
+    sC.mainBoard.yRows = yRows
 
     while winCondition:
-        if checkGameConplete():
+        if checkBoardFilled():
             resetGame()
-            gameContinues = False
             return None
         printScreen(currentTurn,turnNumber)
         mainInputXRaw = int(input("X Position> "))
@@ -145,17 +138,16 @@ def mainLoop(xRows, yRows, winLength):
         #     continue
         if sC.checkSquareFilled(mainInputX,mainInputY):
             continue
-        sC.mainBoard.x[mainInputX][mainInputY] = playerIcon
-        if checkWin(currentTurn):
+        sC.mainBoard.x[mainInputX][mainInputY] = currentTurn
+        if checkWin(currentTurn, winLength, xRows, yRows):
             clearScreen()
-            displayWin(playerIcon)
+            displayWin(currentTurn)
+            gC.gameContinues = False
             break
-        if currentTurn == 0:
-            currentTurn = 1
-            playerIcon = "O"
-        elif currentTurn == 1:
-            currentTurn = 0
-            playerIcon = "X"
+        if currentTurn == "X":
+            currentTurn = "O"
+        elif currentTurn == "O":
+            currentTurn = "X"
         turnNumber += 1
         clearScreen()
 

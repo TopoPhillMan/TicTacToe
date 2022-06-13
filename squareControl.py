@@ -1,20 +1,9 @@
-import squareControl as sC
-
-class square:
-    value = "⠀"
-
-class line:
-    y = []
-
-def createLine(length):
-    linePre = line()
-    for x in range(length):
-        linePre.y.append("⠀")
-    return linePre
-
+import squareControl as s
 
 class board:
     x = []
+    xRows = int
+    yRows = int
     def genBoard(xLine, yLine):
         boardTemp = []
         for x in range(xLine):
@@ -76,12 +65,8 @@ def printBoard(yRows, xRows):
     # print("   └───────────┘")
     # print(" *   1   2   3  ")
 
-
-def changeSquare(x,y,changeTo):
-    mainBoard.x[x][y] = changeTo
-
 def checkSquareFilled(x,y):
-    if mainBoard.x[x][y] != "-":
+    if mainBoard.x[x][y] != "⠀":
         print("ERROR: Square Already Occupied")
         return True
     else:
