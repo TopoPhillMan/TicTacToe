@@ -28,6 +28,11 @@ import testing as test
 #   gC.mainLoop()
 #   print("Game Restarting due to Full Board")
 
-sC.mainBoard.x = sC.board.genBoard(3,3)
+sC.mainBoard.x = sC.board.genBoard(5,5)
+sC.mainBoard.x[0][0] = "O"
 sC.mainBoard.x[1][1] = "O"
-sC.printBoard(3,3)
+sC.mainBoard.x[2][2] = "O"
+sC.mainBoard.x[3][3] = "O"
+sC.mainBoard.x[4][4] = "O"
+print(gC.checkWin("O", 5, 5, 5))
+sC.printBoard(5,5)

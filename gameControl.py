@@ -26,33 +26,71 @@ def printScreen(turn,turnNumber):
 #     else:
 #         return True
 
-def checkWin(turn):
+def checkWin(turn, length, xRows, yRows):
 
-    if turn == 0:
-        checkFor = "X"
-    elif turn == 1:
-        checkFor = "O"
-    else:
-        print ("ERROR: Invalid Player Turn")
+    # Vertical
+    for x in range(xRows):
+        for z in range(yRows - (length - 1)):
+            checkTally = 0
+            for y in range(length):
+                if sC.mainBoard.x[x][z+y] == turn:
+                    checkTally += 1
+            if checkTally == length:
+                return True
 
-    if sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[1][0] == checkFor and sC.mainBoard.x[2][0] == checkFor:
-        return True
-    elif sC.mainBoard.x[0][1] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[2][1] == checkFor:
-        return True
-    elif sC.mainBoard.x[0][2] == checkFor and sC.mainBoard.x[1][2] == checkFor and sC.mainBoard.x[2][2] == checkFor:
-        return True
-    elif sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[0][1] == checkFor and sC.mainBoard.x[0][2] == checkFor:
-        return True
-    elif sC.mainBoard.x[1][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[1][2] == checkFor:
-        return True
-    elif sC.mainBoard.x[2][0] == checkFor and sC.mainBoard.x[2][1] == checkFor and sC.mainBoard.x[2][2] == checkFor:
-        return True
-    elif sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[2][2] == checkFor:
-        return True
-    elif sC.mainBoard.x[2][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[0][2] == checkFor:
-        return True
-    else:
-        return False 
+    # Horizontal
+    for y in range(yRows):
+        for z in range(xRows - (length - 1)):
+            checkTally = 0
+            for x in range(length):
+                if sC.mainBoard.x[z+x][y] == turn:
+                    checkTally += 1
+            if checkTally == length:
+                return True
+
+    # Diagnal
+    for x in range(xRows - (length-1)):
+        for y in range(yRows):
+            checkTallyD = 0
+            checkTallyU = 0
+            for z in range(length):
+                if sC.mainBoard.x[x+z][x-z]:
+                    checkTallyD += 1
+                if sC.mainBoard.x[x+z][x+z]:
+                    checkTallyU += 1
+            if checkTallyD == length or checkTallyU == length:
+                return True
+
+    return False
+                
+
+
+
+    # if turn == 0:
+    #     checkFor = "X"
+    # elif turn == 1:
+    #     checkFor = "O"
+    # else:
+    #     print ("ERROR: Invalid Player Turn")
+
+    # if sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[1][0] == checkFor and sC.mainBoard.x[2][0] == checkFor:
+    #     return True
+    # elif sC.mainBoard.x[0][1] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[2][1] == checkFor:
+    #     return True
+    # elif sC.mainBoard.x[0][2] == checkFor and sC.mainBoard.x[1][2] == checkFor and sC.mainBoard.x[2][2] == checkFor:
+    #     return True
+    # elif sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[0][1] == checkFor and sC.mainBoard.x[0][2] == checkFor:
+    #     return True
+    # elif sC.mainBoard.x[1][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[1][2] == checkFor:
+    #     return True
+    # elif sC.mainBoard.x[2][0] == checkFor and sC.mainBoard.x[2][1] == checkFor and sC.mainBoard.x[2][2] == checkFor:
+    #     return True
+    # elif sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[2][2] == checkFor:
+    #     return True
+    # elif sC.mainBoard.x[2][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[0][2] == checkFor:
+    #     return True
+    # else:
+    #     return False 
         
 def clearScreen():
     counter = 0

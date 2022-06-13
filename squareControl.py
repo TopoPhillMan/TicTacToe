@@ -14,9 +14,7 @@ def createLine(length):
 
 
 class board:
-
     x = []
-
     def genBoard(xLine, yLine):
         boardTemp = []
         for x in range(xLine):
@@ -41,19 +39,19 @@ def printBoard(yRows, xRows):
 
     # Middsection
     for y in range(yRows-1):
-        outputString += str(y+1)
+        outputString += str(yRows- y)
         for x in range(xRows):
             outputString += " | "
-            outputString += mainBoard.x[y][x]
+            outputString += mainBoard.x[x][(yRows-1) - y]
         outputString += " | \n  ├"
         for x in range(xRows-1):
             outputString += "───┼"
         outputString += "───┤\n"
 
-    outputString += str(yRows)
+    outputString += str(yRows - (yRows - 1))
     for x in range(xRows):
         outputString += " | "
-        outputString += mainBoard.x[yRows-1][x]
+        outputString += mainBoard.x[x][(yRows-1) - (yRows-1)]
     outputString += " |\n"
 
     # Bottom Cap
@@ -63,7 +61,7 @@ def printBoard(yRows, xRows):
     outputString += "───┘\n* "
     for x in range(xRows):
         outputString += "  "
-        outputString += str(x)
+        outputString += str(x + 1)
         outputString += " "
 
     print(outputString)
