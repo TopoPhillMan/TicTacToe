@@ -10,16 +10,6 @@ def printScreen(turn,turnNumber):
     sC.printBoard(sC.mainBoard.xRows, sC.mainBoard.yRows)
     print("")
 
-# def checkInput(n):
-#     if n == 1:
-#         return False
-#     elif n == 2:
-#         return False
-#     elif n == 3:
-#         return False
-#     else:
-#         return True
-
 def checkWin(turn, length, xRows, yRows):
 
     # Vertical
@@ -56,32 +46,6 @@ def checkWin(turn, length, xRows, yRows):
                 return True
 
     return False
-
-    # if turn == 0:
-    #     checkFor = "X"
-    # elif turn == 1:
-    #     checkFor = "O"
-    # else:
-    #     print ("ERROR: Invalid Player Turn")
-
-    # if sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[1][0] == checkFor and sC.mainBoard.x[2][0] == checkFor:
-    #     return True
-    # elif sC.mainBoard.x[0][1] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[2][1] == checkFor:
-    #     return True
-    # elif sC.mainBoard.x[0][2] == checkFor and sC.mainBoard.x[1][2] == checkFor and sC.mainBoard.x[2][2] == checkFor:
-    #     return True
-    # elif sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[0][1] == checkFor and sC.mainBoard.x[0][2] == checkFor:
-    #     return True
-    # elif sC.mainBoard.x[1][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[1][2] == checkFor:
-    #     return True
-    # elif sC.mainBoard.x[2][0] == checkFor and sC.mainBoard.x[2][1] == checkFor and sC.mainBoard.x[2][2] == checkFor:
-    #     return True
-    # elif sC.mainBoard.x[0][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[2][2] == checkFor:
-    #     return True
-    # elif sC.mainBoard.x[2][0] == checkFor and sC.mainBoard.x[1][1] == checkFor and sC.mainBoard.x[0][2] == checkFor:
-    #     return True
-    # else:
-    #     return False 
         
 def clearScreen():
     counter = 0
@@ -114,9 +78,9 @@ def resetGame():
     yRows = sC.mainBoard.yRows
     for x in range(xRows):
         for y in range(yRows):
-            sC.mainBoard.x[x][y] = "⠀"
+            sC.mainBoard.x[x][y] = " "
 
-def mainLoop(xRows, yRows, winLength):
+def ticTackToeMainLoop(xRows, yRows, winLength):
     winCondition = True
     currentTurn = "X"
     turnNumber = 1
