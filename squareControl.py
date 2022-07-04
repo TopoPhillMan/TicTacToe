@@ -20,55 +20,81 @@ class board:
 
 mainBoard = board()
 
-def numSpaceingCorectionY(yRows, rowNumber):
-    outputString = f"{rowNumber}"
+def numSpacingCorectionY(yRows, rowNumber):
+    outputString = ""
     maxLength = len(f"{yRows}")
     countLength = len(f"{rowNumber}")
 
     for x in range(maxLength - countLength):
-        outputString += " "
+        outputString += "0"
+    
+    outputString += str(rowNumber)
     
     return(outputString)
 
+def yNumSpacer(yRows):
+    outputString = ""
+    for x in range(len(str(yRows))):
+        outputString+="┄"
+    return outputString
+
+def numSpacingCorrectionX(xRows):
+    outputString = ""
+    baseRowLeadin = numSpacingCorectionY(sC.mainBoard.yRows, "  ") + " ┆ "
+    
+    for x in range(len(str(xRows))):
+        if x == 0:
+            for x in range(len(numSpacingCorectionY(sC.mainBoard.yRows, "*"))-1):
+                outputString += " "
+            outputString += "  ┆ "
+        else:
+            outputString += baseRowLeadin
+        for y in range(xRows):
+            splitNumber = list(str(y+1))
+            delayTimes = len(str(xRows)) - len(splitNumber)
+            if delayTimes >= (x+1):
+                outputString += "0" 
+            else:
+                outputString += splitNumber[x-delayTimes]
+            outputString += " ┆ "
+        outputString += "\n"
+    
+    return outputString
 
 
 def printBoardSeperated(yRows, xRows):
+    ySpacer = yNumSpacer(yRows)
     outputString = ""
-    blank = " "
 
     # Top Cap
-    outputString += "  ┌"
+    outputString += "   ┌"
     for x in range(xRows-1):
         outputString += "───┬"
     outputString += "───┐\n"
 
     # Middsection
     for y in range(yRows-1):
-        outputString += sC.numSpaceingCorectionY(yRows, yRows- y)
+        outputString += sC.numSpacingCorectionY(yRows, yRows- y)
         for x in range(xRows):
             outputString += " | "
             outputString += mainBoard.x[x][(yRows-1) - y]
-        outputString += f" | \n{sC.numSpaceingCorectionY(yRows, blank)} ├"
+        outputString += f" | \n{ySpacer}┄├"
         for x in range(xRows-1):
             outputString += "───┼"
         outputString += "───┤\n"
 
-    outputString += sC.numSpaceingCorectionY(yRows, 1)
+    outputString += sC.numSpacingCorectionY(yRows, 1)
     for x in range(xRows):
         outputString += " | "
         outputString += mainBoard.x[x][(yRows-1) - (yRows-1)]
     outputString += " |\n"
 
     # Bottom Cap
-    outputString += f"{sC.numSpaceingCorectionY(yRows, blank)} └"
+    outputString += f"{ySpacer}┄└"
     for x in range(xRows-1):
         outputString += "───┴"
-    outputString += "───┘\n* "
-    for x in range(xRows):
-        outputString += "  "
-        outputString += str(x + 1)
-        outputString += " "
-
+    outputString += f"───┘\n{numSpacingCorrectionX(sC.mainBoard.xRows)}"
+    
     print(outputString)
 
 def printBoardComined(yRows, xRows):
@@ -98,16 +124,6 @@ def printBoardComined(yRows, xRows):
     outputString += " |\n"
 
     print(outputString)
-
-
-    # print(f"   ┌───────────┐")
-    # print(f" 3 | {mainBoard.x[0][2]} | {mainBoard.x[1][2]} | {mainBoard.x[2][2]} |")
-    # print("   | ──┼───┼── |")
-    # print(f" 2 | {mainBoard.x[0][1]} | {mainBoard.x[1][1]} | {mainBoard.x[2][1]} |")
-    # print("   | ──┼───┼── |")
-    # print(f" 1 | {mainBoard.x[0][0]} | {mainBoard.x[1][0]} | {mainBoard.x[2][0]} |")
-    # print("   └───────────┘")
-    # print(" *   1   2   3  ")
 
 def checkSquareFilled(x,y):
     if mainBoard.x[x][y] != " ":

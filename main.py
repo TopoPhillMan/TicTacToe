@@ -28,7 +28,7 @@ import testing as test
 #   gC.mainLoop(3,3,3)
 #   print("Game Restarting due to Full Board")
 
-sC.mainBoard.xRows = 12
-sC.mainBoard.yRows = 12
+sC.mainBoard.xRows = 25
+sC.mainBoard.yRows = 25
 sC.mainBoard.x = sC.board.genBoard(sC.mainBoard.xRows, sC.mainBoard.yRows)
-sC.printBoardSeperated(sC.mainBoard.yRows,sC.mainBoard.xRows)
+sC.printBoardSeperated(sC.mainBoard.yRows, sC.mainBoard.xRows)
