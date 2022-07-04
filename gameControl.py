@@ -4,10 +4,12 @@ import testing as test
 
 gameContinues = True
 
+# General Controls
+
 def printScreen(turn,turnNumber):
 
     print(f" Turn {turnNumber} - {turn} Move")
-    sC.printBoard(sC.mainBoard.xRows, sC.mainBoard.yRows)
+    sC.printBoardSeperated(sC.mainBoard.xRows, sC.mainBoard.yRows)
     print("")
 
 def checkWin(turn, length, xRows, yRows):
@@ -66,7 +68,7 @@ def checkBoardFilled():
     check = 0
     for x in range(xRows):
         for y in range(yRows):
-            if sC.mainBoard.x[x][y] != "⠀":
+            if sC.mainBoard.x[x][y] != " ":
                 check += 1
     if check == xRows * yRows:
         return True
@@ -79,6 +81,8 @@ def resetGame():
     for x in range(xRows):
         for y in range(yRows):
             sC.mainBoard.x[x][y] = " "
+
+# TicTackToe
 
 def ticTackToeMainLoop(xRows, yRows, winLength):
     winCondition = True
@@ -97,9 +101,6 @@ def ticTackToeMainLoop(xRows, yRows, winLength):
         mainInputYRaw = int(input("Y Position> "))
         mainInputX = mainInputXRaw - 1
         mainInputY = mainInputYRaw - 1
-        # if checkInput(mainInputX) == True  or checkInput(mainInputY):
-        #     print("ERORR: Invalid Input")
-        #     continue
         if sC.checkSquareFilled(mainInputX,mainInputY):
             continue
         sC.mainBoard.x[mainInputX][mainInputY] = currentTurn
@@ -115,5 +116,55 @@ def ticTackToeMainLoop(xRows, yRows, winLength):
         turnNumber += 1
         clearScreen()
 
+# Connect4
+
+def findHighestUnfilled(row, yRows):
+    for x in range(yRows):
+        if sC.mainBoard.x[row][x] != " ":
+            continue
+        else:
+            return x
+
+def collumFull(row, yRows):
+    if sC.mainBoard.x[row][yRows-1] != " ":
+        return True
+    else:
+        return False
 
 
+
+def connectFourMainLoop(xRows, yRows, winLength):
+    winCondition = True
+    currentTurn = "X"
+    turnNumber = 1
+    sC.mainBoard.x = sC.board.genBoard(xRows, yRows)
+    sC.mainBoard.xRows = xRows
+    sC.mainBoard.yRows = yRows
+    while winCondition:
+        if checkBoardFilled():
+            resetGame()
+            return None
+        printScreen(currentTurn,turnNumber)
+        mainInputXRaw = int(input("What Collum Do You Want To Place Into> "))
+        mainInputX = mainInputXRaw - 1
+        if collumFull(mainInputX, yRows):
+            clearScreen()
+            print("That Collum is Full!")
+            turnNumber -= 1
+            continue
+        sC.mainBoard.x[mainInputX][findHighestUnfilled(mainInputX, yRows)] = currentTurn
+        if checkWin(currentTurn, winLength, xRows, yRows):
+            clearScreen()
+            displayWin(currentTurn)
+            gC.gameContinues = False
+            break
+        if currentTurn == "X":
+            currentTurn = "O"
+        elif currentTurn == "O":
+            currentTurn = "X"
+        turnNumber += 1
+        clearScreen()
+
+
+
+        

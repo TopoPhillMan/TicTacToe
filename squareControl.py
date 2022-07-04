@@ -67,7 +67,9 @@ def printBoardSeperated(yRows, xRows):
     outputString = ""
 
     # Top Cap
-    outputString += "   ┌"
+    for x in range(len(numSpacingCorectionY(sC.mainBoard.yRows, "*"))-1):
+        outputString += " "
+    outputString += "  ┌"
     for x in range(xRows-1):
         outputString += "───┬"
     outputString += "───┐\n"
@@ -95,34 +97,6 @@ def printBoardSeperated(yRows, xRows):
         outputString += "───┴"
     outputString += f"───┘\n{numSpacingCorrectionX(sC.mainBoard.xRows)}"
     
-    print(outputString)
-
-def printBoardComined(yRows, xRows):
-    outputString = ""
-
-    # Top Cap
-    outputString += "  ┌"
-    for x in range(xRows-1):
-        outputString += "─"
-    outputString += "─┐\n"
-
-    # Middsection
-    for y in range(yRows-1):
-        outputString += str(yRows- y)
-        for x in range(xRows):
-            outputString += " | "
-            outputString += mainBoard.x[x][(yRows-1) - y]
-        outputString += " | \n  ├"
-        for x in range(xRows-1):
-            outputString += "───┼"
-        outputString += "───┤\n"
-
-    outputString += str(yRows - (yRows - 1))
-    for x in range(xRows):
-        outputString += " | "
-        outputString += mainBoard.x[x][(yRows-1) - (yRows-1)]
-    outputString += " |\n"
-
     print(outputString)
 
 def checkSquareFilled(x,y):
