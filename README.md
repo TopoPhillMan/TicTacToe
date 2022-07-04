@@ -5,21 +5,11 @@ A simple game of TicTackToe, writen in python, and played in the command line
 Python Version 3.9.12
 
 No dependancies required
-<<<<<<< HEAD
-=======
-
->>>>>>> aa0dbbf3bb6da4e0e0acae86bb0d3ca4c0136faf
 --------------------------
 ## Running
 
 The process of compiling and running the code on your own machine in relitevly strait forward. First download a zip archive of the branch that you wish to run, and then exstract the enclosed folder into any directory of your choosing. It is them recomended that you open a phyon virtual enviroment for the program to run in around the exstracted directory, although as there are now dependacies as of yet in this project, this step could be considered optional.
 
-<<<<<<< HEAD
-The next step to compiling and running would be to navigate to the directory included in the zip file via a command line, before imputing the command...
-
-'''
-python3 main.py
-'''
 =======
 Next, navigate to the directory included in the zip file via a command line, before imputing the command...
 

@@ -1,8 +1,25 @@
 import gameControl as gC
 import squareControl as sC
-import testing as test
+import ticFunctions as tic
+import connectFunctions as con
 
-gC.connectFourMainLoop(6,6,4)
+def play():
+    print("""
+    What Game do you want to play
+    1. TicTackToe
+    2. Connect 4""")
+    gameChoice = int(input("> "))
+    if gameChoice == 1:
+        tic.ticTackToeMainLoop(3,3,3)
+    elif gameChoice == 2:
+        con.connectFourMainLoop(6,6,4)
+    else:
+        print("Invalid Input")
+
+play()
+
+
+# gC.connectFourMainLoop(6,6,4)
 
 # while gC.gameContinues:
 #   gC.connectFourMainLoop(6,6,4)
