@@ -1,3 +1,4 @@
+from turtle import clearscreen
 import gameControl as gC
 import squareControl as sC
 import ticFunctions as tic
@@ -10,27 +11,30 @@ def play():
     2. Connect 4""")
     gameChoice = int(input("> "))
     if gameChoice == 1:
-        tic.ticTackToeMainLoop(3,3,3)
+        print("""
+        What game style would you like to use?
+        1. Clasic: 3x3 Board, Win Length 3
+        2. Large: 5x5 board, Win Length 5
+        3. Weird: 5x5 board, Win length 3
+        4. Costom
+        """)
+        gameStyleChoice = int(input("> "))
+        if gameStyleChoice == 1:
+            gC.clearScreen()
+            tic.ticTackToeMainLoop(3,3,3)
+        if gameStyleChoice == 2:
+            gC.clearScreen()
+            tic.ticTackToeMainLoop(5,5,5)
+        if gameStyleChoice == 3:
+            gC.clearScreen()
+            tic.ticTackToeMainLoop(5,5,3)
+        if gameStyleChoice == 4:
+            gC.clearScreen()
+            tic.ticTackToeMainLoop(int(input("How Wide is the Board\n >")),int(input("How Tall is the Board\n >")),int(input("How Long to Win\n >")))
     elif gameChoice == 2:
+        gC.clearScreen()
         con.connectFourMainLoop(6,6,4)
     else:
         print("Invalid Input")
 
 play()
-
-
-# gC.connectFourMainLoop(6,6,4)
-
-# while gC.gameContinues:
-#   gC.connectFourMainLoop(6,6,4)
-#   print("Game Restarting due to Full Board")
-
-# sC.mainBoard.xRows = 6
-# sC.mainBoard.yRows = 6
-# sC.mainBoard.x = sC.board.genBoard(sC.mainBoard.xRows, sC.mainBoard.yRows)
-# sC.mainBoard.x[0][0] = "X"
-# sC.mainBoard.x[0][1] = "X"
-# sC.mainBoard.x[0][2] = "X"
-# sC.mainBoard.x[0][3] = "X"
-# sC.printBoardSeperated(sC.mainBoard.yRows, sC.mainBoard.xRows)
-# print(gC.collumFull(0,sC.mainBoard.yRows))
