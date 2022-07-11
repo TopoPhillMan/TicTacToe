@@ -1,4 +1,3 @@
-from turtle import clearscreen
 import gameControl as gC
 import squareControl as sC
 import ticFunctions as tic

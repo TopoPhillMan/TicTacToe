@@ -1,11 +1,7 @@
 import squareControl as sC
 import gameControl as gC
-import testing as test
 
 gameContinues = True
-
-# General Controls
-
 def printScreen(turn,turnNumber):
 
     print(f" Turn {turnNumber} - {turn} Move")
@@ -14,7 +10,6 @@ def printScreen(turn,turnNumber):
 
 def checkWin(turn, length, xRows, yRows):
 
-    # Vertical
     for x in range(xRows):
         for z in range(yRows - (length - 1)):
             checkTally = 0
@@ -24,7 +19,6 @@ def checkWin(turn, length, xRows, yRows):
             if checkTally == length:
                 return True
 
-    # Horizontal
     for y in range(yRows):
         for z in range(xRows - (length - 1)):
             checkTally = 0
@@ -34,7 +28,6 @@ def checkWin(turn, length, xRows, yRows):
             if checkTally == length:
                 return True
 
-    # Diagnal
     for x in range(xRows - (length-1)):
         for y in range(yRows):
             checkTallyD = 0

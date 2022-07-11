@@ -64,7 +64,6 @@ def printBoardSeperated(yRows, xRows):
     ySpacer = yNumSpacer(yRows)
     outputString = ""
 
-    # Top Cap
     for x in range(len(numSpacingCorectionY(sC.mainBoard.yRows, "*"))-1):
         outputString += " "
     outputString += "  ┌"
@@ -72,7 +71,6 @@ def printBoardSeperated(yRows, xRows):
         outputString += "───┬"
     outputString += "───┐\n"
 
-    # Middsection
     for y in range(yRows-1):
         outputString += sC.numSpacingCorectionY(yRows, yRows- y)
         for x in range(xRows):
@@ -89,7 +87,6 @@ def printBoardSeperated(yRows, xRows):
         outputString += mainBoard.x[x][(yRows-1) - (yRows-1)]
     outputString += " |\n"
 
-    # Bottom Cap
     outputString += f"{ySpacer}┄└"
     for x in range(xRows-1):
         outputString += "───┴"
