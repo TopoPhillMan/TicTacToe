@@ -1,5 +1,3 @@
-from calendar import c
-from numpy import outer
 import squareControl as sC
 
 class board:

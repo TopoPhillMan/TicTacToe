@@ -82,8 +82,6 @@ def resetGame():
         for y in range(yRows):
             sC.mainBoard.x[x][y] = " "
 
-# Connect4
-
 
 
 
