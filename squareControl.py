@@ -1,43 +1,106 @@
+from calendar import c
+from numpy import outer
 import squareControl as sC
 
 class board:
-    
-    def __init__(self):
-        pass
-    
     x = []
-    
-    def genBoard(xLine, yLine):
-        lineInternal = []
-        boardTemp = []
-        for y in range(yLine):
-            lineInternal.append("")
-        for x in range(xLine):
-            boardTemp.append(lineInternal)
-        return boardTemp
+    xRows = int
+    yRows = int
 
-    def __getitem__(self, i):
-        return f"Value {i}"
+    def genBoard(xLine, yLine):
+        boardTemp = []
+        for x in range(xLine):
+            boardTemp.insert(xLine, [])
+        
+        for x in range(xLine):
+           for y in range(yLine):
+                boardTemp[x].append(" ")
+
+        return boardTemp
 
 mainBoard = board()
 
-def printBoard():
+def numSpacingCorectionY(yRows, rowNumber):
+    outputString = ""
+    maxLength = len(f"{yRows}")
+    countLength = len(f"{rowNumber}")
 
-    print(f"   ┌───────────┐")
-    print(f" 3 | {mainBoard.x[0][2]} | {mainBoard.x[1][2]} | {mainBoard.x[2][2]} |")
-    print("   | ──┼───┼── |")
-    print(f" 2 | {mainBoard.x[0][1]} | {mainBoard.x[1][1]} | {mainBoard.x[2][1]} |")
-    print("   | ──┼───┼── |")
-    print(f" 1 | {mainBoard.x[0][0]} | {mainBoard.x[1][0]} | {mainBoard.x[2][0]} |")
-    print("   └───────────┘")
-    print(" *   1   2   3  ")
+    for x in range(maxLength - countLength):
+        outputString += "0"
+    
+    outputString += str(rowNumber)
+    
+    return(outputString)
+
+def yNumSpacer(yRows):
+    outputString = ""
+    for x in range(len(str(yRows))):
+        outputString+="┄"
+    return outputString
+
+def numSpacingCorrectionX(xRows):
+    outputString = ""
+    baseRowLeadin = numSpacingCorectionY(sC.mainBoard.yRows, "  ") + " ┆ "
+    
+    for x in range(len(str(xRows))):
+        if x == 0:
+            for x in range(len(numSpacingCorectionY(sC.mainBoard.yRows, "*"))-1):
+                outputString += " "
+            outputString += "  ┆ "
+        else:
+            outputString += baseRowLeadin
+        for y in range(xRows):
+            splitNumber = list(str(y+1))
+            delayTimes = len(str(xRows)) - len(splitNumber)
+            if delayTimes >= (x+1):
+                outputString += "0" 
+            else:
+                outputString += splitNumber[x-delayTimes]
+            outputString += " ┆ "
+        outputString += "\n"
+    
+    return outputString
 
 
-def changeSquare(x,y,changeTo):
-    mainBoard.x[x][y] = changeTo
+def printBoardSeperated(yRows, xRows):
+    ySpacer = yNumSpacer(yRows)
+    outputString = ""
+
+    # Top Cap
+    for x in range(len(numSpacingCorectionY(sC.mainBoard.yRows, "*"))-1):
+        outputString += " "
+    outputString += "  ┌"
+    for x in range(xRows-1):
+        outputString += "───┬"
+    outputString += "───┐\n"
+
+    # Middsection
+    for y in range(yRows-1):
+        outputString += sC.numSpacingCorectionY(yRows, yRows- y)
+        for x in range(xRows):
+            outputString += " | "
+            outputString += mainBoard.x[x][(yRows-1) - y]
+        outputString += f" | \n{ySpacer}┄├"
+        for x in range(xRows-1):
+            outputString += "───┼"
+        outputString += "───┤\n"
+
+    outputString += sC.numSpacingCorectionY(yRows, 1)
+    for x in range(xRows):
+        outputString += " | "
+        outputString += mainBoard.x[x][(yRows-1) - (yRows-1)]
+    outputString += " |\n"
+
+    # Bottom Cap
+    outputString += f"{ySpacer}┄└"
+    for x in range(xRows-1):
+        outputString += "───┴"
+    outputString += f"───┘\n{numSpacingCorrectionX(sC.mainBoard.xRows)}"
+    
+    print(outputString)
 
 def checkSquareFilled(x,y):
-    if mainBoard.x[x][y] != "-":
+    if mainBoard.x[x][y] != " ":
         print("ERROR: Square Already Occupied")
         return True
     else:
