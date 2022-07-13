@@ -59,6 +59,27 @@ def numSpacingCorrectionX(xRows):
     
     return outputString
 
+def printBoardCombined(yRows, xRows):
+    outputString = ""
+
+    outputString += " ┌"
+    for x in range(xRows):
+        outputString += "─"
+    outputString += "┐\n"
+
+    for y in range(yRows):
+        outputString += f" |"
+        for x in range(xRows):
+            outputString += mainBoard.x[x][(yRows-1) - y]
+        outputString += f"|\n"
+
+
+    outputString += f" └"
+    for x in range(xRows):
+        outputString += "─"
+    outputString += f"┘\n"
+    
+    print(outputString)
 
 def printBoardSeperated(yRows, xRows):
     ySpacer = yNumSpacer(yRows)

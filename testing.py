@@ -1,31 +1,17 @@
 import gameControl as gC
 import squareControl as sC
+import ticFunctions as tic
+import connectFunctions as con
+import golfFunctions as golf
+import math
 
-def checkWin(testCondition,deffiner,player): 
-    if testCondition == 0:
-        for x in range(3):
-            sC.mainBoard.x[deffiner][x] = player
-    if testCondition == 1:
-        for x in range(3):
-            sC.mainBoard.x[x][deffiner] = player
-    if testCondition == 2:
-        if deffiner == 0:
-            sC.mainBoard.x[0][0] == player
-            sC.mainBoard.x[1][1] == player
-            sC.mainBoard.x[2][2] == player
-        if deffiner == 1:
-            sC.mainBoard.x[2][0] == player
-            sC.mainBoard.x[1][1] == player
-            sC.mainBoard.x[0][2] == player
+sC.mainBoard.xRows = 6
+sC.mainBoard.yRows = 3
+sC.mainBoard.x = sC.board.genBoard(sC.mainBoard.xRows, sC.mainBoard.yRows)
 
-def fillBoard(xRows, yRows):
-    for y in range(yRows):
-        for x in range(xRows):
-            sC.mainBoard.x[y].x[x] = "X"
+golf.mainBall.x = 1
+golf.mainBall.y = 3
+golf.mainBall.sprite = "B"
+golf.mainBall.weight = 1
 
-def checkOrientation():
-    sC.mainBoard.x[1][1] = "◁"
-    sC.mainBoard.x[2][1] = "◁"
-
-
-
+print(golf.calcAirTime(3, 20, -9.8, 20))

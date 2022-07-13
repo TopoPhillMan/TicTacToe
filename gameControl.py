@@ -1,6 +1,5 @@
 import squareControl as sC
 import gameControl as gC
-import testing as test
 
 gameContinues = True
 
