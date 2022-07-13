@@ -72,13 +72,18 @@ def genMap():
     operatingCache = golf.mapBoard.xRows - operatingPosX
     golf.addStraight(operatingPosX, operatingPosY, operatingCache)
 
-    operatingContinue = golf.mapBoard.xRows - round(operatingCache*random())
+    operatingContinue = (golf.mapBoard.xRows-1) - round(0.8*(operatingCache*random()))
+    golf.mapBoard.x[operatingContinue-1][operatingPosY] = " "
     golf.mapBoard.x[operatingContinue][operatingPosY] = " "
-    golf.mapBoard.x[operatingContinue+1][operatingPosY] = " "
-    golf.mapBoard.x[operatingContinue][operatingPosY-1] = "└"
-    golf.mapBoard.x[operatingContinue+1][operatingPosY-1] = "┘"
+    golf.mapBoard.x[operatingContinue-1][operatingPosY-1] = "└"
+    golf.mapBoard.x[operatingContinue][operatingPosY-1] = "┘"
 
-
+def resetMap():
+    xRows = golf.mapBoard.xRows
+    yRows = golf.mapBoard.yRows
+    for x in range(xRows):
+        for y in range(yRows):
+            golf.mapBoard.x[x][y] = " "
 
 def calcAirTime(yChange, velocityInitial, gravity, angle):
     # y = yInital + velocityY*time + (0.5*gravity)*time**2

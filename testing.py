@@ -23,7 +23,9 @@ golf.mapBoard.x = sC.board.genBoard(golf.mapBoard.xRows, golf.mapBoard.yRows)
 # golf.addStraight(2,3,3)
 # golf.changeAlt(5,3,-2)
 
-golf.genMap()
-
-sC.mainBoard.x = golf.mapBoard.x
-sC.printBoardCombined(sC.mainBoard.yRows,sC.mainBoard.xRows)
+for x in range(50):
+    golf.genMap()
+    sC.mainBoard.x = golf.mapBoard.x
+    sC.printBoardCombined(sC.mainBoard.yRows,sC.mainBoard.xRows)
+    gC.resetGame()
+    golf.resetMap()
