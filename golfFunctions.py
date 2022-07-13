@@ -21,13 +21,13 @@ def changeAlt(startX,startY,altGain):
         if altGain > 0: 
             golf.mapBoard.x[startX+x][startY+x] = "╱"
         if altGain == 0:
-            golf.mapBoard.x[startX+x][startY] = "▁"
+            golf.mapBoard.x[startX+x][startY] = "_"
         if altGain < 0:
             golf.mapBoard.x[startX+x][startY-(x+1)] = f"╲"
 
 def addStraight(startX,startY,length):
     for x in range(length):
-        golf.mapBoard.x[startX+x][startY] = "▁"
+        golf.mapBoard.x[startX+x][startY] = "_"
 
 def genMap():
     startAlt = int
@@ -39,9 +39,9 @@ def genMap():
     operatingContinue = True
 
 
-    golf.mapBoard.x[0][startAlt] = "▁"
-    golf.mapBoard.x[1][startAlt] = "▂"
-    golf.mapBoard.x[2][startAlt] = "▁"
+    golf.mapBoard.x[0][startAlt] = "_"
+    golf.mapBoard.x[1][startAlt] = "▄"
+    golf.mapBoard.x[2][startAlt] = "_"
 
     while operatingContinue:
         if operatingPosX >= 0.50*golf.mapBoard.xRows:
