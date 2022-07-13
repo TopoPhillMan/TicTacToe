@@ -73,10 +73,8 @@ def genMap():
     golf.addStraight(operatingPosX, operatingPosY, operatingCache)
 
     operatingContinue = (golf.mapBoard.xRows-1) - round(0.8*(operatingCache*random()))
-    golf.mapBoard.x[operatingContinue-1][operatingPosY] = " "
-    golf.mapBoard.x[operatingContinue][operatingPosY] = " "
-    golf.mapBoard.x[operatingContinue-1][operatingPosY-1] = "└"
-    golf.mapBoard.x[operatingContinue][operatingPosY-1] = "┘"
+    golf.mapBoard.x[operatingContinue][operatingPosY] = "ˌ"
+    golf.mapBoard.x[operatingContinue][operatingPosY-1] = "˅"
 
 def resetMap():
     xRows = golf.mapBoard.xRows

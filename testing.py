@@ -23,7 +23,7 @@ golf.mapBoard.x = sC.board.genBoard(golf.mapBoard.xRows, golf.mapBoard.yRows)
 # golf.addStraight(2,3,3)
 # golf.changeAlt(5,3,-2)
 
-for x in range(50):
+for x in range(1):
     golf.genMap()
     sC.mainBoard.x = golf.mapBoard.x
     sC.printBoardCombined(sC.mainBoard.yRows,sC.mainBoard.xRows)
