@@ -15,6 +15,14 @@ def collumFull(row, yRows):
     else:
         return False
 
+def checkBounds(xInput):
+    if xInput >= sC.mainBoard.xRows:
+        return True
+    elif xInput < 0:
+        return True
+    else: 
+        return False
+
 def connectFourMainLoop(xRows, yRows, winLength):
     winCondition = True
     currentTurn = "X"
@@ -29,6 +37,10 @@ def connectFourMainLoop(xRows, yRows, winLength):
         gC.printScreen(currentTurn,turnNumber)
         mainInputXRaw = int(input("What Collum Do You Want To Place Into> "))
         mainInputX = mainInputXRaw - 1
+        if con.checkBounds(mainInputX):
+            gC.clearScreen()
+            print("Out of Bounds!")
+            continue
         if con.collumFull(mainInputX, yRows):
             gC.clearScreen()
             print("That Collum is Full!")
