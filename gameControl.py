@@ -95,7 +95,7 @@ What game style would you like to use?
 1. Clasic: 3x3 Board, Win Length 3
 2. Large: 5x5 board, Win Length 5
 3. Weird: 5x5 board, Win length 3
-4. Costom
+4. Custom
         """)
         gameStyleChoice = int(input("> "))
         if gameStyleChoice == 1:
@@ -116,7 +116,7 @@ What game style would you like to use?
 1. Clasic: 6x6 Board, Win Length 4
 2. Large: 10x10 board, Win Length 5
 3. Weird: 4x4 board, Win length 3
-4. Costom
+4. Custom
         """)
         gameStyleChoice = int(input("> "))
         if gameStyleChoice == 1:
