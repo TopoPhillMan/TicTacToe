@@ -1,5 +1,18 @@
 import gameControl as gC
 import squareControl as sC
+import ticFunctions as tic
+
+def checkBounds(xInput, yInput):
+    if xInput >= sC.mainBoard.xRows:
+        return True
+    elif xInput < 0:
+        return True
+    elif yInput >= sC.mainBoard.yRows:
+        return True
+    elif yInput < 0:
+        return True
+    else: 
+        return False
 
 def ticTackToeMainLoop(xRows, yRows, winLength):
     winCondition = True
@@ -18,6 +31,10 @@ def ticTackToeMainLoop(xRows, yRows, winLength):
         mainInputYRaw = int(input("Y Position> "))
         mainInputX = mainInputXRaw - 1
         mainInputY = mainInputYRaw - 1
+        if tic.checkBounds(mainInputX, mainInputY):
+            gC.clearScreen()
+            print("Out of Bounds!")
+            continue
         if sC.checkSquareFilled(mainInputX,mainInputY):
             continue
         sC.mainBoard.x[mainInputX][mainInputY] = currentTurn
