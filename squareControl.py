@@ -60,7 +60,7 @@ def numSpacingCorrectionX(xRows):
     return outputString
 
 
-def printBoardSeperated(yRows, xRows):
+def printBoardSeperated(xRows, yRows):
     ySpacer = yNumSpacer(yRows)
     outputString = ""
 
