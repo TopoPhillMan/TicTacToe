@@ -1,31 +1,28 @@
 import gameControl as gC
 import squareControl as sC
+import ticFunctions as tic
+import connectFunctions as con
+import ghostFunctions as gho
+from msvcrt import getch
 
-def checkWin(testCondition,deffiner,player): 
-    if testCondition == 0:
-        for x in range(3):
-            sC.mainBoard.x[deffiner][x] = player
-    if testCondition == 1:
-        for x in range(3):
-            sC.mainBoard.x[x][deffiner] = player
-    if testCondition == 2:
-        if deffiner == 0:
-            sC.mainBoard.x[0][0] == player
-            sC.mainBoard.x[1][1] == player
-            sC.mainBoard.x[2][2] == player
-        if deffiner == 1:
-            sC.mainBoard.x[2][0] == player
-            sC.mainBoard.x[1][1] == player
-            sC.mainBoard.x[0][2] == player
+# ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏ 
+# ┐ ┑ ┒ ┓ └ ┕ ┖ ┗ ┘ ┙ ┚ ┛ ├ ┝ ┞ ┟
+# ┠ ┡ ┢ ┣ ┤ ┥ ┦ ┧ ┨ ┩ ┪ ┫ ┬ ┭ ┮ ┯
+# ┰ ┱ ┲ ┳ ┴ ┵ ┶ ┷ ┸ ┹ ┺ ┻ ┼ ┽ ┾ ┿ 
+# ╀ ╁ ╂ ╃ ╄ ╅ ╆ ╇ ╈ ╉ ╊ ╋ ╌ ╍ ╎ ╏ 
+# ═ ║ ╒ ╓ ╔ ╕ ╖ ╗ ╘ ╙ ╚ ╛ ╜ ╝ ╞ ╟ 
+# ╠ ╡ ╢ ╣ ╤ ╥ ╦ ╧ ╨ ╩ ╪ ╫ ╬ 
 
-def fillBoard(xRows, yRows):
-    for y in range(yRows):
-        for x in range(xRows):
-            sC.mainBoard.x[y].x[x] = "X"
-
-def checkOrientation():
-    sC.mainBoard.x[1][1] = "◁"
-    sC.mainBoard.x[2][1] = "◁"
-
+sC.mainBoard.x = sC.board.genBoard(10,10)
+borderCluser = [["┏","━","━","━","━","━","━","━","━","┓"],["┃"," "," "," "," "," "," "," "," ","┃"],["┃"," "," "," "," "," "," "," "," ","┃"],["┃"," "," "," "," "," "," "," "," ","┃"],["┃"," "," "," "," "," "," "," "," ","┃"],["┃"," "," "," "," "," "," "," "," ","┃"],["┃"," "," "," "," "," "," "," "," ","┃"],["┃"," "," "," "," "," "," "," "," ","┃"],["┃"," "," "," "," "," "," "," "," ","┃"],["┗","━","━","━","━","━","━","━","━","┛"]]
+testCluster = [["h","e","l","l","o"],["w","o","r","l","d"]]
+gho.biuldMap(10,10)
+gho.addCluster(testCluster,1,2)
+gho.addCluster(gho.cluster.straight.vertical,1,4)
+gho.addCluster(gho.cluster.straight.vertical,1,5)
+gho.addCluster(gho.cluster.straight.vertical,1,6)
+gho.addCluster(borderCluser,0,0)
+sC.mainBoard.x = gho.mazeMap
+gho.printBoard(10,10)
 
 
