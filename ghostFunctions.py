@@ -29,6 +29,7 @@ def biuldMap(xLines, yLines):
     gho.mazeMap = sC.board.genBoard(xLines*3,yLines*3)
     gho.charcterMap = sC.board.genBoard(xLines*3,yLines*3)
     gho.wallMap = mazeStackCell.genBoard(xLines,yLines)
+    gho.inlineMap = sC.board.genBoard(xLines,yLines)
 
 
 class cluster():
@@ -95,13 +96,13 @@ class mazeStackCell():
         else: 
             tracker += 1
 
-        if yLine + 1 <= len(gho.wallMap[0]):
+        if yLine + 1 <= len(gho.wallMap[0])-1:
             if wallMap[xLine][yLine+1].visited == True:
                 tracker += 1
         else: 
             tracker += 1
         
-        if xLine +1 <= len(gho.wallMap):
+        if xLine +1 <= len(gho.wallMap)-1:
             if wallMap[xLine+1][yLine].visited == True:
                 tracker += 1
         else: 
@@ -127,10 +128,10 @@ class mazeStackCell():
             if ran >= 0 and ran < 0.25 and yLine - 1 >= 0:
                 if wallMap[xLine-0][yLine-1].visited == False:
                     return 'north'
-            elif ran >= 0.25 and ran < 0.5 and yLine + 1 <= len(gho.wallMap[0]):
+            elif ran >= 0.25 and ran < 0.5 and yLine + 1 <= len(gho.wallMap[0])-1:
                 if wallMap[xLine][yLine+1].visited == False:
                     return 'south'
-            elif ran >= 0.5 and ran < 0.75 and xLine +1 <= len(gho.wallMap):
+            elif ran >= 0.5 and ran < 0.75 and xLine +1 <= len(gho.wallMap)-1:
                 if wallMap[xLine+1][yLine].visited == False:
                     return 'east'
             elif ran >= 0.75 and ran <= 1 and xLine -1 >= 0:
@@ -145,36 +146,125 @@ class mazeStackCell():
     
     def goDirection(self,direction):
         if direction == 'north':
-            self.north = False
             return (self.x,self.y-1)
         elif direction == 'south':
-            self.south = False
             return (self.x,self.y+1)
         elif direction == 'east':
-            self.east = False
             return (self.x+1,self.y)
         elif direction == 'west':
-            self.west = False
             return (self.x-1,self.y)
+
+    def removeWalls(self,direction):
+        if direction == 'north':
+            self.north = False
+            wallMap[self.x][self.y-1].south = False
+        if direction == 'south':
+            self.south = False
+            wallMap[self.x][self.y+1].north = False
+        if direction == 'east':
+            self.east = False
+            wallMap[self.x+1][self.y].west = False
+        if direction == 'west': 
+            self.west = False
+            wallMap[self.x-1][self.y].east = False
+
+
     
-    def makeMaze(self):
-        mazeStackCell.addToPath(0,0)
-        while (wallMap[0][0].checkDeadEnd() != True):
-            currentX = mainStackPath[-1][0]
-            currentY = mainStackPath[-1][1]
+    def makeMaze(self): 
 
-            if wallMap[currentX][currentY].checkDeadEnd():
-                mazeStackCell.backTrack()
-                continue
+        counter = 0
+        junctDrirection = gho.wallMap[0][0].chooseJunction()
+        cordsNew = gho.wallMap[0][0].goDirection(junctDrirection)
+        mazePath.append((0,0,junctDrirection))
+        gho.mazeStackCell.addToPath(0,0)
+        gho.wallMap[0][0].visited = True
+
+        while len(gho.mainStackPath) > 0:
+            currnetX = cordsNew[0]
+            currentY = cordsNew[1]
+
+            if gho.wallMap[currnetX][currentY].checkDeadEnd():
+                gho.wallMap[currnetX][currentY].visited = True
+                cordsNew = gho.mainStackPath[-1]
+                gho.mazeStackCell.backTrack()
             else:
-                cords = wallMap[currentX][currentY].goDirection(wallMap[currentX][currentY].chooseJunction())
-                mazeStackCell.addToPath(cords[0], cords[1])
+                junctDrirection = gho.wallMap[currnetX][currentY].chooseJunction()
+                cordsNew = gho.wallMap[currnetX][currentY].goDirection(junctDrirection)
+                mazePath.append((currnetX,currentY,junctDrirection))
+                gho.mazeStackCell.addToPath(currnetX,currentY)
+                gho.wallMap[currnetX][currentY].visited = True
+    
+    def removeWalls():
+        for i in range(len(mazePath)):
+            curentX = mazePath[i][0]
+            curentY = mazePath[i][1]
+            direction = mazePath[i][2]
+            
+            if direction == 'north':
+                wallMap[curentX][curentY].north = False
+                wallMap[curentX][curentY-1].south = False
+            
+            if direction == 'south':
+                wallMap[curentX][curentY].south = False
+                wallMap[curentX][curentY+1].north = False
+            
+            if direction == 'east':
+                wallMap[curentX][curentY].east = False
+                wallMap[curentX+1][curentY].west = False
+            
+            if direction == 'west':
+                wallMap[curentX][curentY].west = False
+                wallMap[curentX-1][curentY].east = False
+                
+    def generateMapInline():
+        for x in range(len(wallMap)):
+            for y in range(len(wallMap[0])):
+                inlineMap[y*3][x*3] = "█"
+                inlineMap[y*3][x*3+2] = "█"
+                inlineMap[y*3+1][x*3+1] = " "
+                inlineMap[y*3+2][x*3] = "█"
+                inlineMap[y*3+2][x*3+2] = "█"
+
+                if wallMap[x][y].north == True:
+                    inlineMap[y*3][(x*3)+1] = "█"
+                else:
+                    inlineMap[y*3][x*3+1] = " "
+
+                if wallMap[x][y].west == True:
+                    inlineMap[y*3+1][x*3] = "█"
+                else:
+                    inlineMap[y*3+1][x*3] = " "
+
+                if wallMap[x][y]. east == True:
+                    inlineMap[y*3+1][x*3+2] = "█"
+                else:
+                    inlineMap[y*3+1][x*3+2] = " "
+
+                if wallMap[x][y].south == True:
+                    inlineMap[y*3+2][x*3+1] = "█"
+                else:
+                    inlineMap[y*3+2][x*3+1] = " "
+                
+
+                
 
 
+                
+
+# ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏ 
+# ┐ ┑ ┒ ┓ └ ┕ ┖ ┗ ┘ ┙ ┚ ┛ ├ ┝ ┞ ┟
+# ┠ ┡ ┢ ┣ ┤ ┥ ┦ ┧ ┨ ┩ ┪ ┫ ┬ ┭ ┮ ┯
+# ┰ ┱ ┲ ┳ ┴ ┵ ┶ ┷ ┸ ┹ ┺ ┻ ┼ ┽ ┾ ┿ 
+# ╀ ╁ ╂ ╃ ╄ ╅ ╆ ╇ ╈ ╉ ╊ ╋ ╌ ╍ ╎ ╏ 
+# ═ ║ ╒ ╓ ╔ ╕ ╖ ╗ ╘ ╙ ╚ ╛ ╜ ╝ ╞ ╟ 
+# ╠ ╡ ╢ ╣ ╤ ╥ ╦ ╧ ╨ ╩ ╪ ╫ ╬ ╭ ╮ ╯ 
+# ╰ ╱ ╲ ╳ ╴ ╵ ╶ ╷ ╸ ╹ ╺ ╻ ╼ ╽ ╾ ╿
 
 
 wallMap = gho.mazeStackCell
+inlineMap = gho.mazeStackCell
 mainStackPath = []
+mazePath = []
 
 
 
