@@ -1,8 +1,8 @@
-import gameControl as gC
-import squareControl as sC
-import ticFunctions as tic
-import connectFunctions as con
-import ghostFunctions as gho
+import controllers.squareControl as sC
+import controllers.gameControl as gC
+import assets.ticFunctions as tic
+import assets.connectFunctions as con
+import assets.ghostFunctions as gho
 from msvcrt import getch
 
-gho.generateFull(60,120)
+gho.generateFull(10,10)

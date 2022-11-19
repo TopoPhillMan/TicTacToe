@@ -1,6 +1,6 @@
-import gameControl as gC
-import squareControl as sC
-import connectFunctions as con
+import controllers.gameControl as gC
+import controllers.squareControl as sC
+import assets.connectFunctions as con
 
 def findHighestUnfilled(row, yRows):
     for x in range(yRows):

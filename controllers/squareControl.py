@@ -1,4 +1,4 @@
-import squareControl as sC
+import controllers.squareControl as sC
 
 class board:
     x = []

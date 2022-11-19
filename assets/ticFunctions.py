@@ -1,6 +1,6 @@
-import gameControl as gC
-import squareControl as sC
-import ticFunctions as tic
+import controllers.gameControl as gC
+import controllers.squareControl as sC
+import assets.ticFunctions as tic
 
 def checkBounds(xInput, yInput):
     if xInput >= sC.mainBoard.xRows:

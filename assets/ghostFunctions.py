@@ -1,8 +1,8 @@
-import gameControl as gC
-import squareControl as sC
-import ghostFunctions as gho
+import controllers.gameControl as gC
+import controllers.squareControl as sC
+import assets.ghostFunctions as gho
 from msvcrt import getch
-from random import random
+import random
 
 # Layer entrance - ⛶
 # Player character - ⚇
@@ -26,43 +26,41 @@ def printBoard(xLines, yLines):
     print(outputString)
 
 def biuldMap(xLines, yLines):
-    gho.mazeMap = sC.board.genBoard(xLines*3,yLines*3)
     gho.charcterMap = sC.board.genBoard(xLines*3,yLines*3)
     gho.wallMap = mazeStackCell.genBoard(xLines,yLines)
     gho.inlineMap = sC.board.genBoard(xLines,yLines)
 
+# class cluster():
+#     class straight():
+#         vertical = [["│"," ","│"]]
+#         horizontal = [["─"],[" "],["─"]]
+#     class turn():
+#         class up():
+#             right = [["┌","─","─"],["│"," "," "],["│","","┌"]]
+#             left = [["─","─","┐"],[" "," ","│"],["┐","","│"]]
+#         class down(): 
+#             left = [["└","─","─"],["│","",""],["│","","└"]]
+#             right = [["─","─","┘"],["","","│"],["┘","","│"]]
+#     class loop():
+#         up = [["┌","─","─","─","┐"],["│"," "," "," ","│"],["│"," ","│"," ","│"]]
+#         down = [["│"," ","│"," ","│"],["│"," "," "," ","│"],["└","─","─","─","┘"]]
+#         right = [["┌","─","─"],["│"," "," "],["│"," ","─"],["│"," "," "],["└","─","─"]]
+#         left = [["─","─","┐"],[" "," ","│"],["─"," ","│"],[" "," ","│"],["─","─","┘"]]
 
-class cluster():
-    class straight():
-        vertical = [["│"," ","│"]]
-        horizontal = [["─"],[" "],["─"]]
-    class turn():
-        class up():
-            right = [["┌","─","─"],["│"," "," "],["│","","┌"]]
-            left = [["─","─","┐"],[" "," ","│"],["┐","","│"]]
-        class down(): 
-            left = [["└","─","─"],["│","",""],["│","","└"]]
-            right = [["─","─","┘"],["","","│"],["┘","","│"]]
-    class loop():
-        up = [["┌","─","─","─","┐"],["│"," "," "," ","│"],["│"," ","│"," ","│"]]
-        down = [["│"," ","│"," ","│"],["│"," "," "," ","│"],["└","─","─","─","┘"]]
-        right = [["┌","─","─"],["│"," "," "],["│"," ","─"],["│"," "," "],["└","─","─"]]
-        left = [["─","─","┐"],[" "," ","│"],["─"," ","│"],[" "," ","│"],["─","─","┘"]]
+# def biuldCluster(inputArray):
+#     outputerCluster = sC.board.genBoard(len(inputArray[0]),len(inputArray))
+#     for x in range(len(inputArray[0])):
+#         for y in range(len(inputArray)):
+#             outputerCluster[x][y] = inputArray[y][x]
+#     return outputerCluster
 
-def biuldCluster(inputArray):
-    outputerCluster = sC.board.genBoard(len(inputArray[0]),len(inputArray))
-    for x in range(len(inputArray[0])):
-        for y in range(len(inputArray)):
-            outputerCluster[x][y] = inputArray[y][x]
-    return outputerCluster
+# def addCluster(cluster,startX,startY):
+#     xLength = len(cluster[0])
+#     yLength = len(cluster)
 
-def addCluster(cluster,startX,startY):
-    xLength = len(cluster[0])
-    yLength = len(cluster)
-
-    for y in range(yLength):
-        for x in range(xLength):
-            gho.charcterMap[startY+y][startX+x] = cluster[y][x]
+#     for y in range(yLength):
+#         for x in range(xLength):
+#             gho.charcterMap[startY+y][startX+x] = cluster[y][x]
 
 class mazeStackCell():
     def __init__(self, visited, x, y):
@@ -124,7 +122,7 @@ class mazeStackCell():
         xLine = self.x
         yLine = self.y
         while True:
-            ran = random()
+            ran = random.random()
             if ran >= 0 and ran < 0.25 and yLine - 1 >= 0:
                 if wallMap[xLine-0][yLine-1].visited == False:
                     return 'north'
@@ -168,10 +166,11 @@ class mazeStackCell():
             self.west = False
             wallMap[self.x-1][self.y].east = False
 
-
+    def openDoors(xLines,yLines):
+        wallMap[0][random.randint(0,yLines-1)].south = False
+        wallMap[xLines-1][random.randint(0,yLines-1)].north = False
     
     def makeMaze(self): 
-
         counter = 0
         junctDrirection = gho.wallMap[0][0].chooseJunction()
         cordsNew = gho.wallMap[0][0].goDirection(junctDrirection)
@@ -215,6 +214,9 @@ class mazeStackCell():
             if direction == 'west':
                 wallMap[curentX][curentY].west = False
                 wallMap[curentX-1][curentY].east = False
+
+        wallMap[0][0].north = False
+        wallMap[len(wallMap)-1][len(wallMap[0])-1].south = False
                 
     def generateMapInline():
         for x in range(len(wallMap)):
@@ -271,6 +273,7 @@ def generateFull(xdem, ydem):
     gho.wallMap[0][0].makeMaze()
     gho.inlineMap = sC.board.genBoard(ydem*3, xdem*3)
     gho.mazeStackCell.removeWalls()
+    gho.mazeStackCell.openDoors(xdem,ydem)
     gho.mazeStackCell.generateMapInline()
     sC.mainBoard.x = gho.inlineMap
     gho.printBoard(ydem*3, xdem*3)
