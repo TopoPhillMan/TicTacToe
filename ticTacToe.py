@@ -6,5 +6,5 @@ import assets.ghostFunctions as gho
 import applications as apps
 
 if __name__ == '__main__':
-    gC.play()
+    apps.main()
 
