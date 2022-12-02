@@ -1,43 +1,51 @@
-import gameControl as gC
-import squareControl as sC
-import ticFunctions as tic
+import controllers.gameControl as gC
+import controllers.squareControl as sC
+import assets.connectFunctions as con
 
-def checkBounds(xInput, yInput):
+def findHighestUnfilled(row, yRows):
+    for x in range(yRows):
+        if sC.mainBoard.x[row][x] != " ":
+            continue
+        else:
+            return x
+
+def collumFull(row, yRows):
+    if sC.mainBoard.x[row][yRows-1] != " ":
+        return True
+    else:
+        return False
+
+def checkBounds(xInput):
     if xInput >= sC.mainBoard.xRows:
         return True
     elif xInput < 0:
         return True
-    elif yInput >= sC.mainBoard.yRows:
-        return True
-    elif yInput < 0:
-        return True
     else: 
         return False
 
-def ticTackToeMainLoop(xRows, yRows, winLength):
+def connectFourMainLoop(xRows, yRows, winLength):
     winCondition = True
     currentTurn = "X"
     turnNumber = 1
     sC.mainBoard.x = sC.board.genBoard(xRows, yRows)
     sC.mainBoard.xRows = xRows
     sC.mainBoard.yRows = yRows
-
     while winCondition:
         if gC.checkBoardFilled():
             gC.resetGame()
             return None
         gC.printScreen(currentTurn,turnNumber)
-        mainInputXRaw = int(input("X Position> "))
-        mainInputYRaw = int(input("Y Position> "))
+        mainInputXRaw = int(input("What Collum Do You Want To Place Into> "))
         mainInputX = mainInputXRaw - 1
-        mainInputY = mainInputYRaw - 1
-        if tic.checkBounds(mainInputX, mainInputY):
+        if con.checkBounds(mainInputX):
             gC.clearScreen()
             print("Out of Bounds!")
             continue
-        if sC.checkSquareFilled(mainInputX,mainInputY):
+        if con.collumFull(mainInputX, yRows):
+            gC.clearScreen()
+            print("That Collum is Full!")
             continue
-        sC.mainBoard.x[mainInputX][mainInputY] = currentTurn
+        sC.mainBoard.x[mainInputX][con.findHighestUnfilled(mainInputX, yRows)] = currentTurn
         if gC.checkWin(currentTurn, winLength, xRows, yRows):
             gC.clearScreen()
             gC.displayWin(currentTurn)
