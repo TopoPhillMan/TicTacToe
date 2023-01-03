@@ -167,7 +167,14 @@ def mazeApp():
 
         x = int(input("X Dimension > "))
         y = int(input("Y Dimension > "))
-        gho.generateFull(x,y)
+        gho.generateFull(x,y) 
+    elif len(sys.argv) == 3: 
+        print("Too Few Values!")
+    elif len(sys.argv) > 4:
+        print("Too many values")
+    else: 
+        x = int(sys.argv[3])
+        gho.generateFull(int(sys.argv[3]),int(sys.argv[4]))
 
 
 

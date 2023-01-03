@@ -1,7 +1,6 @@
 import controllers.gameControl as gC
 import controllers.squareControl as sC
 import assets.ghostFunctions as gho
-from msvcrt import getch
 import random
 
 # Layer entrance - ⛶

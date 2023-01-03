@@ -1,7 +1,7 @@
 import squareControl as sC
 import gameControl as gC
-import ticFunctions as tic
-import connectFunctions as con
+import assets.ticFunctions as tic
+import assets.connectFunctions as con
 
 gameContinues = True
 
