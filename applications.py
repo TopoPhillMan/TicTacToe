@@ -94,9 +94,9 @@ def ticApp():
         print("Too Many Values! - Type `python3 ticTackToe.py tic` for help")
         exit()
     else:
-        x = int(sys.argv[3])
-        y = int(sys.argv[4])
-        w = int(sys.argv[5])
+        x = int(sys.argv[2])
+        y = int(sys.argv[3])
+        w = int(sys.argv[4])
         tic.ticTackToeMainLoop(x,y,w)
 
 def conApp():
